@@ -9,7 +9,7 @@ export function getPostgresConnectionOptions(): PostgresConnectionOptions {
       ssl: true,
       url: process.env.DATABASE_URL,
       entities: [`${__dirname}/**/*.entity{.ts,.js}`],
-      synchronize: false,
+      synchronize: true,
     };
   } else {
     return {
