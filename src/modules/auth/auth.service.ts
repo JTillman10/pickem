@@ -4,7 +4,6 @@ import { UserService } from '../user/user.service';
 import { UserToAuthenticate } from '../user/models/user-to-authenticate.model';
 import * as bcrypt from 'bcryptjs';
 import { User } from '../user/user.entity';
-import { JwtRequest } from './models/jwt-request.model';
 import { JwtResponse } from './models/jwt-response.model';
 
 @Injectable()
@@ -44,8 +43,8 @@ export class AuthService {
     };
   }
 
-  async validateUser(jwtRequest: JwtRequest): Promise<User> {
-    return await this.userService.getUserByEmail(jwtRequest.email);
+  async validateUser(email: string): Promise<User> {
+    return await this.userService.getUserByEmail(email);
   }
 
   async encrypt(password: string): Promise<string> {
