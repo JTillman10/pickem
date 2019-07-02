@@ -1,10 +1,10 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { NewUser } from '../user/models/new-user.model';
 import { UserToAuthenticate } from '../user/models/user-to-authenticate.model';
 import { UserService } from '../user/user.service';
+import { User } from '../user/user.entity';
 
-@Controller('/auth')
+@Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
@@ -17,7 +17,7 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body() newUser: NewUser) {
+  async register(@Body(new ValidationPipe()) newUser: User) {
     const { password } = newUser;
     newUser.password = await this.authService.encrypt(password);
     const createdUser = await this.userService.create(newUser);
