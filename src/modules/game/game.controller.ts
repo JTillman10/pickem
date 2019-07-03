@@ -11,6 +11,7 @@ import { GameService } from './game.service';
 import { Game } from './game.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { ScraperService } from './scraper.service';
+import { ScrapeOptions } from './models/scrape-options.model';
 
 @Controller('games')
 @UseGuards(AuthGuard('jwt'))
@@ -40,8 +41,8 @@ export class GameController {
 
   @Post('scrape')
   // @Roles('ADMIN')
-  async scrapeGames(): Promise<Game[]> {
-    const newGames: Game[] = await this.scraperService.scrape();
+  async scrapeGames(@Body() scrapeOptions: ScrapeOptions): Promise<Game[]> {
+    const newGames: Game[] = await this.scraperService.scrape(scrapeOptions);
     await this.gameService.createGames(newGames);
     return newGames;
   }

@@ -5,6 +5,7 @@ import { UserToAuthenticate } from '../user/models/user-to-authenticate.model';
 import * as bcrypt from 'bcryptjs';
 import { User } from '../user/user.entity';
 import { JwtResponse } from './models/jwt-response.model';
+import { loginExipiration } from '../../config';
 
 @Injectable()
 export class AuthService {
@@ -37,7 +38,7 @@ export class AuthService {
     user.password = null;
 
     return {
-      expiresIn: 7200,
+      expiresIn: loginExipiration,
       accessToken,
       userId: user.id,
     };

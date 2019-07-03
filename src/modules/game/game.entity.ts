@@ -33,7 +33,7 @@ export class Game {
   lineWinner?: LineWinner;
 
   @IsPositive()
-  @Column({ default: 0 })
+  @Column('double precision', { default: 0 })
   overunder?: number;
 
   @IsOptional()
