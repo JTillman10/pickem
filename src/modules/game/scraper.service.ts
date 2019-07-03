@@ -7,7 +7,9 @@ import { Game } from './game.entity';
 @Injectable()
 export class ScraperService {
   async scrape(): Promise<Game[]> {
-    const browser: Browser = await launch();
+    const browser: Browser = await launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     const page: Page = await browser.newPage();
     await page.goto('https://www.sportsbetting.ag/sportsbook/football/ncaa');
     const html: string = await page.content();
