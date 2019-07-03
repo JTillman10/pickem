@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
-import { NewUser } from './models/new-user.model';
 
 @Injectable()
 export class UserService {
@@ -22,8 +21,7 @@ export class UserService {
     return await this.userRepository.findOne({ id });
   }
 
-  async create(newUser: NewUser): Promise<User> {
-    newUser.role = 'user';
+  async create(newUser: User): Promise<User> {
     const user = await this.userRepository.save(newUser);
     user.password = null;
     return user;

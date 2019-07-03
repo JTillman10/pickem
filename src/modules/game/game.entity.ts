@@ -24,30 +24,32 @@ export class Game {
   away: string;
 
   @IsNumber()
-  @Column()
+  @Column('double precision')
   line: number;
 
   @IsOptional()
   @IsEnum(LineWinner)
   @Column({ nullable: true })
-  lineWinner: LineWinner;
+  lineWinner?: LineWinner;
 
   @IsPositive()
-  @Column()
-  overunder: number;
+  @Column({ default: 0 })
+  overunder?: number;
 
   @IsOptional()
   @IsEnum(OverunderWinner)
   @Column({ nullable: true })
-  overunderWinner: OverunderWinner;
+  overunderWinner?: OverunderWinner;
 
+  @IsOptional()
   @IsPositive()
-  @Column()
-  week: number;
+  @Column({ nullable: true })
+  week?: number;
 
+  @IsOptional()
   @IsPositive()
-  @Column()
-  year: number;
+  @Column({ nullable: true })
+  year?: number;
 
   @IsOptional()
   @IsDate()
