@@ -25,7 +25,7 @@ export class Game {
 
   @IsNumber()
   @Column()
-  line: number;
+  line: string;
 
   @IsOptional()
   @IsEnum(LineWinner)
@@ -33,7 +33,7 @@ export class Game {
   lineWinner: LineWinner;
 
   @IsPositive()
-  @Column()
+  @Column({ default: 0 })
   overunder: number;
 
   @IsOptional()
@@ -41,12 +41,14 @@ export class Game {
   @Column({ nullable: true })
   overunderWinner: OverunderWinner;
 
+  @IsOptional()
   @IsPositive()
-  @Column()
+  @Column({ nullable: true })
   week: number;
 
+  @IsOptional()
   @IsPositive()
-  @Column()
+  @Column({ nullable: true })
   year: number;
 
   @IsOptional()
