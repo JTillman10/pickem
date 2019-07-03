@@ -25,6 +25,12 @@
       "sourceMaps": true,
       "console": "internalConsole",
       "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Scraper",
+      "program": "${workspaceFolder}/scraper/scraper.js"
     }
   ]
 }

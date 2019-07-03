@@ -38,4 +38,8 @@ export class GameService {
       Promise.resolve(),
     );
   }
+
+  async deleteAllGames(): Promise<void> {
+    return await this.gameRepository.clear();
+  }
 }
