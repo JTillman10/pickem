@@ -15,5 +15,5 @@ export class ScrapeOptions {
   week: number;
 
   @IsNumber()
-  year: number;
+  season: number;
 }

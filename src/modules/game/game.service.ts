@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Game } from './game.entity';
@@ -15,18 +15,19 @@ export class GameService {
 
   async getGame(home: string, away: string, date: Date): Promise<Game> {
     date = new Date(date);
-    const game = await this.gameRepository.findOne(
-      { home, away, date },
-      // { home, away },
-    );
+    const game = await this.gameRepository.findOne({ home, away, date });
     return game;
+  }
+
+  async getGameById(id: number): Promise<Game> {
+    return this.gameRepository.findOne({ id });
   }
 
   async createGame(game: Game): Promise<Game> {
     if (!(await this.getGame(game.home, game.away, game.date))) {
       return await this.gameRepository.save(game);
     }
-    return null;
+    throw new BadRequestException('Game already exists!');
   }
 
   async createGames(games: Game[]): Promise<Game[]> {

@@ -9,7 +9,7 @@ import { ScrapeType } from './models/scrape-type.enum';
 @Injectable()
 export class ScraperService {
   async scrape(scrapeOptions: ScrapeOptions): Promise<Game[]> {
-    const { maxDate, minDate, scrapeTypes, week, year } = scrapeOptions;
+    const { maxDate, minDate, scrapeTypes, week, season } = scrapeOptions;
     const browser: Browser = await launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
@@ -108,7 +108,7 @@ export class ScraperService {
               date: gameDate,
               overunder,
               week,
-              year,
+              season,
             };
             games.push(game);
           }

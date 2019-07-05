@@ -9,5 +9,6 @@ import { ScraperService } from './scraper.service';
   imports: [TypeOrmModule.forFeature([Game])],
   providers: [GameService, ScraperService],
   controllers: [GameController],
+  exports: [GameService],
 })
 export class GameModule {}
