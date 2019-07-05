@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import {
   IsString,
   IsNumber,
@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 import { LineWinner } from './models/line-winner.enum';
 import { OverunderWinner } from './models/overunder-winner.enum';
+import { Pick } from '../pick/pick.entity';
 
 @Entity('game')
 export class Game {
@@ -33,7 +34,7 @@ export class Game {
   lineWinner?: LineWinner;
 
   @IsPositive()
-  @Column({ default: 0 })
+  @Column('double precision', { default: 0 })
   overunder?: number;
 
   @IsOptional()
@@ -49,10 +50,12 @@ export class Game {
   @IsOptional()
   @IsPositive()
   @Column({ nullable: true })
-  year?: number;
+  season?: number;
 
   @IsOptional()
   @IsDate()
   @Column({ nullable: true })
   date: Date;
+
+  @OneToMany(type => Pick, pick => pick.game) picks?: Pick[];
 }

@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { IsString, IsEmail, IsOptional, IsEnum } from 'class-validator';
 import { Role } from './models/role.enum';
+import { Pick } from '../pick/pick.entity';
 
 @Entity('user')
 export class User {
@@ -27,4 +28,6 @@ export class User {
   @IsEnum(Role)
   @Column()
   role?: Role;
+
+  @OneToMany(type => Pick, pick => pick.user) picks?: Pick[];
 }

@@ -2,6 +2,9 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 
 export const apiPrefix = '/api';
 
+// 12 hours
+export const loginExipiration = 43200;
+
 export function getPostgresConnectionOptions(): PostgresConnectionOptions {
   if (process.env.DATABASE_URL) {
     return {
