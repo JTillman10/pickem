@@ -3,8 +3,9 @@ import { AuthService } from './auth.service';
 import { UserToAuthenticate } from '../user/models/user-to-authenticate.model';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
+import { apiPrefix } from '../../config';
 
-@Controller('auth')
+@Controller(`${apiPrefix}/auth`)
 export class AuthController {
   constructor(
     private readonly authService: AuthService,

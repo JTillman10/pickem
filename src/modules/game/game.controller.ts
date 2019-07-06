@@ -12,8 +12,9 @@ import { Game } from './game.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { ScraperService } from './scraper.service';
 import { ScrapeOptions } from './models/scrape-options.model';
+import { apiPrefix } from '../../config';
 
-@Controller('games')
+@Controller(`${apiPrefix}/games`)
 @UseGuards(AuthGuard('jwt'))
 // @UseGuards(AuthGuard('jwt'), RolesGuard)
 export class GameController {
