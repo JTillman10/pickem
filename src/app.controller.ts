@@ -6,6 +6,6 @@ import { Response } from 'express';
 export class AppController {
   @Get()
   root(@Res() response: Response) {
-    response.sendFile(path.resolve('dist/client/index.html'));
+    response.sendFile(path.resolve('./dist/client/index.html'));
   }
 }

@@ -17,11 +17,12 @@ const allowedExtentions = [
 
 const prefix = apiPrefix;
 
-const resolvePath = (file: string) => path.resolve(`dist/client/${file}`);
+const resolvePath = (file: string) => path.resolve(`./dist/client/${file}`);
 
 @Injectable()
 export class FrontendMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: () => void) {
+    // const { url } = req; use Request object from nestjs
     const { baseUrl } = req;
     if (baseUrl.indexOf(prefix) === 0) {
       next();
