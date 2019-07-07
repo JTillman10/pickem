@@ -23,22 +23,23 @@ const prefix = apiPrefix;
 export class FrontendMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: () => void) {
     // const { url } = req; use Request object from nestjs
-    const { baseUrl } = req;
-    if (baseUrl.indexOf(prefix) === 0) {
-      next();
-    } else if (
-      allowedExtentions.filter(extention => baseUrl.indexOf(extention) > 0)
-        .length > 0
-    ) {
-      // res.sendFile(resolvePath(baseUrl));
-      // res.sendFile(join(__dirname, '..', '..', '..', 'client', baseUrl));
-      console.log('Base url: ', baseUrl);
-      res.sendFile(resolve(`./dist/client/${baseUrl}`));
-    } else {
-      // res.sendFile(resolvePath('index.html'));
-      // res.sendFile(join(__dirname, '..', '..', '..', 'client', 'index.html'));
-      console.log('Index');
-      res.sendFile(resolve('./dist/client/index.html'));
-    }
+    // const { baseUrl } = req;
+    // if (baseUrl.indexOf(prefix) === 0) {
+    //   next();
+    // } else if (
+    //   allowedExtentions.filter(extention => baseUrl.indexOf(extention) > 0)
+    //     .length > 0
+    // ) {
+    //   // res.sendFile(resolvePath(baseUrl));
+    //   // res.sendFile(join(__dirname, '..', '..', '..', 'client', baseUrl));
+    //   console.log('Base url: ', baseUrl);
+    //   res.sendFile(resolve(`./dist/client/${baseUrl}`));
+    // } else {
+    //   // res.sendFile(resolvePath('index.html'));
+    //   // res.sendFile(join(__dirname, '..', '..', '..', 'client', 'index.html'));
+    //   console.log('Index');
+    //   res.sendFile(resolve('./dist/client/index.html'));
+    // }
+    next();
   }
 }
