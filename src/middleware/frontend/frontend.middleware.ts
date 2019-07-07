@@ -17,7 +17,7 @@ const allowedExtentions = [
 
 const prefix = apiPrefix;
 
-const resolvePath = (file: string) => path.resolve(`./dist/client/${file}`);
+const resolvePath = (file: string) => path.resolve(`dist/client/${file}`);
 
 @Injectable()
 export class FrontendMiddleware implements NestMiddleware {
