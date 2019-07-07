@@ -33,7 +33,18 @@ export class FrontendMiddleware implements NestMiddleware {
     ) {
       res.sendFile(resolve(`dist/client/${baseUrl}`));
     } else {
-      console.log('Index exists: ', existsSync('dist/client/index.html'));
+      console.log(
+        'dist/client/index.html: ',
+        existsSync('dist/client/index.html'),
+      );
+      console.log(
+        '/app/dist/client/index.html: ',
+        existsSync('/app/dist/client/index.html'),
+      );
+      console.log(
+        '../../../client/index.html: ',
+        existsSync('../../../client/index.html'),
+      );
       res.sendFile(resolve('dist/client/index.html'));
     }
   }
