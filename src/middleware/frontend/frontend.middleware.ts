@@ -32,11 +32,13 @@ export class FrontendMiddleware implements NestMiddleware {
     ) {
       // res.sendFile(resolvePath(baseUrl));
       // res.sendFile(join(__dirname, '..', '..', '..', 'client', baseUrl));
-      res.sendFile(baseUrl);
+      console.log('Base url: ', baseUrl);
+      res.sendFile(resolve(`./dist/client/${baseUrl}`));
     } else {
       // res.sendFile(resolvePath('index.html'));
       // res.sendFile(join(__dirname, '..', '..', '..', 'client', 'index.html'));
-      res.sendFile('index.html');
+      console.log('Index');
+      res.sendFile(resolve('./dist/client/index.html'));
     }
   }
 }
