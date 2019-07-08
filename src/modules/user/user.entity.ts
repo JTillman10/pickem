@@ -26,7 +26,7 @@ export class User {
 
   @IsOptional()
   @IsEnum(Role)
-  @Column()
+  @Column({ nullable: true })
   role?: Role;
 
   @OneToMany(type => Pick, pick => pick.user) picks?: Pick[];

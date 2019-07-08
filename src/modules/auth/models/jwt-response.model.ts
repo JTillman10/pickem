@@ -1,5 +1,7 @@
+import { User } from '../../user/user.entity';
+
 export class JwtResponse {
   expiresIn: number;
   accessToken: string;
-  userId: number;
+  user: User;
 }

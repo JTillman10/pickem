@@ -40,7 +40,7 @@ export class AuthService {
     return {
       expiresIn: loginExipiration,
       accessToken,
-      userId: user.id,
+      user,
     };
   }
 
