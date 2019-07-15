@@ -27,6 +27,7 @@ export class UserService {
   }
 
   async create(newUser: User): Promise<User> {
+    // TODO: check if email exists
     const user = await this.userRepository.save(newUser);
     user.password = null;
     return user;

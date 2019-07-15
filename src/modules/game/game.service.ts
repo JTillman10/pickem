@@ -10,7 +10,11 @@ export class GameService {
   ) {}
 
   async getAllGames(): Promise<Game[]> {
-    return await this.gameRepository.find();
+    return await this.gameRepository.find({
+      order: {
+        date: 'ASC',
+      },
+    });
   }
 
   async getGame(home: string, away: string, date: Date): Promise<Game> {
